@@ -36,24 +36,22 @@ public class FPS_View : MonoBehaviour {
         MouseLook();
 
         Jump(300.0f);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+    
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
     }
 
     private void MouseLook()
     {
         // Multiply this by the minimum angle
-        rotationX += Input.GetAxis("Mouse X") *  s_X; // Get value between -1 or 1
-        rotationY += Input.GetAxis("Mouse Y") *  s_Y; // Get value between -1 or 1
+        rotationX += Input.GetAxis("Mouse X") *  s_X * Time.deltaTime; // Get value between -1 or 1
+        rotationY += Input.GetAxis("Mouse Y") *  s_Y * Time.deltaTime; // Get value between -1 or 1
 
         //Constrains on the rotations axis
         rotationX = ClampAngle(rotationX, -360.0f, 360.0f);
         rotationY = ClampAngle(rotationY, -60.0f, 60.0f);
-       
+        
         Quaternion quaternionX = Quaternion.AngleAxis(rotationX, Vector3.up);
         Quaternion quaternionY = Quaternion.AngleAxis(rotationY, -Vector3.right);
 
