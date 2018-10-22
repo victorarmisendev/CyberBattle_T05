@@ -13,10 +13,15 @@ public class FPS_View : MonoBehaviour {
     private float velocity;
     public float shakeDuration;
     public float amount;
+    private bool isZoomed = false;
+    private Vector3 original_cam_pos;
+    private float original_speed;
 
     void Start ()
     {
         o_rot = transform.localRotation;
+        original_cam_pos = camera_player.transform.position;
+        original_speed = speed;
     }
 	
 	void Update ()
@@ -26,19 +31,23 @@ public class FPS_View : MonoBehaviour {
 
         transform.Translate(h * speed, 0.0f, v * speed);
 
-        if(h != 0.0f || v != 0.0f)
-        {
-            //CameraShake(1.0f);
-        }
-
         Sprint();
-
         MouseLook();
-
         Jump(300.0f);
-    
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (Input.GetKeyDown(KeyCode.Q)) isZoomed = !isZoomed;
+        
+        if(isZoomed)
+        {
+            ZoomON();
+        }
+        else
+        {
+            ZoomOFF();
+        }
         
     }
 
@@ -74,22 +83,34 @@ public class FPS_View : MonoBehaviour {
             gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, jump_force, 0.0f));
     }
 
-    private void CameraShake(float shakeTimer)
-    {
-        Vector2 _pos = new Vector2(camera_player.transform.position.x, camera_player.transform.position.y);
-        Vector2 shake = _pos + (Random.insideUnitCircle * amount);
-
-        float x = Mathf.SmoothDamp(_pos.x, shake.x, ref velocity, shakeDuration);
-        float y = Mathf.SmoothDamp(_pos.y, shake.y, ref velocity, shakeDuration);
-
-        camera_player.transform.position = new Vector3(x, y, 
-            camera_player.transform.position.z);
-    }
-
     private void Sprint()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))      
-            speed *= 2;      
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            HeadBobbing.bobbingSpeed = 0.26f;
+            speed = original_speed * 3;
+        }
+        else {
+            HeadBobbing.bobbingSpeed = 0.18f;
+            speed = original_speed;
+        }
+    }
+
+    private void ZoomON()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0.0f)
+        {
+            camera_player.fieldOfView -= 2.0f;
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0.0f)
+        {
+            camera_player.fieldOfView += 2.0f;
+        }
+    }
+
+    private void ZoomOFF()
+    {
+        camera_player.fieldOfView = 60.0f;
     }
 
 
