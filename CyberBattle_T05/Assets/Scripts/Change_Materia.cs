@@ -5,8 +5,9 @@ using UnityEngine;
 public class Change_Materia : MonoBehaviour {
 
     public GameObject particle_obj;
-    
-	void FixedUpdate ()
+    float RAN_X, RAN_Y, RAN_Z;
+
+    void Update ()
     {
         GetObject();
     }
@@ -19,21 +20,35 @@ public class Change_Materia : MonoBehaviour {
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
-                Debug.Log(hit.collider.gameObject.name);
-                hit.collider.gameObject.GetComponent<Renderer>().material.color = 
-                    Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
 
                 float NUM_PARTICLES = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices.Length;
 
                 Destroy(hit.collider.gameObject);
 
-                for (int i = 0; i < NUM_PARTICLES; i++)
+                if(NUM_PARTICLES > 100)
                 {
-                    particle_obj = Instantiate(particle_obj, hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i],
-                        hit.collider.gameObject.transform.rotation) as GameObject;
-                    particle_obj.transform.position = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i];
+                    NUM_PARTICLES = 100;
                 }
 
+                for (int i = 0; i < NUM_PARTICLES; i++)
+                {
+                    particle_obj = Instantiate(particle_obj, hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i] + 
+                        hit.collider.gameObject.transform.position,
+                        hit.collider.gameObject.transform.rotation) as GameObject;
+
+                    Debug.Log(hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i]);
+
+                    Vector3 particel_Pos = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i];
+
+                    float RAN_X = Random.Range(-particel_Pos.x, particel_Pos.x + 1);
+                    float RAN_Y = Random.Range(-particel_Pos.x, particel_Pos.x + 1);
+                    float RAN_Z = Random.Range(-particel_Pos.x, particel_Pos.x + 1);
+
+                    particle_obj.GetComponent<Rigidbody>().AddForce(new Vector3(RAN_X, RAN_Y, RAN_Z), ForceMode.Impulse);
+
+                }
+
+                Debug.Log(NUM_PARTICLES);
 
 
             }

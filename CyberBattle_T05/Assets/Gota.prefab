@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4695370921298612}
   - component: {fileID: 33735662624575678}
   - component: {fileID: 23214853990551852}
-  - component: {fileID: 135127362948079494}
-  - component: {fileID: 54498968740535472}
+  - component: {fileID: 114729279823449450}
+  - component: {fileID: 135174584682975220}
+  - component: {fileID: 54312908927854456}
   m_Layer: 0
   m_Name: Gota
   m_TagString: Untagged
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802284750955076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.274636, y: 0.17515, z: 2.9754229}
-  m_LocalScale: {x: 0.10304278, y: 0.10304278, z: 0.10304278}
+  m_LocalPosition: {x: 20.832163, y: 0.37908638, z: -11.574}
+  m_LocalScale: {x: 0.63843197, y: 0.63843197, z: 0.63843197}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,8 +85,8 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802284750955076}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54498968740535472
+  m_Mesh: {fileID: 4300000, guid: acb5fae9fb0f81247aed5cfdb512c071, type: 3}
+--- !u!54 &54312908927854456
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +101,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &135127362948079494
+--- !u!114 &114729279823449450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802284750955076}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e097af5eebdd7594ea8b583cd9083d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liquid_Material: {fileID: 2100000, guid: 64f654bfce66e1b4483d0018797da0c5, type: 2}
+--- !u!135 &135174584682975220
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,5 +123,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.19999999
+  m_Center: {x: -0.000000022351742, y: 0, z: 0.19999999}
