@@ -6,8 +6,11 @@ public class HeadBobbing : MonoBehaviour {
 
     private float timer = 0.0f;
     private float timer2 = 0.0f;
-    public static float bobbingSpeed = 0.18f;
-    private float bobbingAmount = 0.2f;
+    public static float bobbingSpeedX = 0.26f;
+    public static float bobbingSpeedY = 0.18f;
+    //public static float bobbingSpeed = 0.18f;
+    private float bobbingAmountX = 0.10f;
+    private float bobbingAmountY = 0.13f;
     float midpoint = 1.0f;
 
     float waveslice, horizontal, vertical, translateChange, totalAxes, localPosition;
@@ -28,14 +31,14 @@ public class HeadBobbing : MonoBehaviour {
         else
         {
             waveslice = Mathf.Sin(timer);
-            timer = timer + bobbingSpeed;
+            timer = timer + bobbingSpeedY;
             if (timer > Mathf.PI * 2)
             {
                 timer = timer - (Mathf.PI * 2);
             }
 
             waveslice2 = Mathf.Cos(timer2);
-            timer2 = timer2 + bobbingSpeed;
+            timer2 = timer2 + bobbingSpeedX;
             if (timer2 > Mathf.PI * 2)
             {
                 timer2 = timer2 - (Mathf.PI * 2);
@@ -43,12 +46,12 @@ public class HeadBobbing : MonoBehaviour {
         }
         if (waveslice != 0 && waveslice2 != 0)
         {
-            translateChange = waveslice * bobbingAmount;
+            translateChange = waveslice * bobbingAmountY;
             totalAxes = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
             translateChange = totalAxes * translateChange;
 
-            translateChange2 = waveslice2 * bobbingAmount;
+            translateChange2 = waveslice2 * bobbingAmountX;
             totalAxes2= Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             totalAxes2 = Mathf.Clamp(totalAxes2, 0.0f, 1.0f);
             translateChange2 = totalAxes2 * translateChange2;

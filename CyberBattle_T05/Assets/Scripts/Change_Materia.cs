@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Change_Materia : MonoBehaviour {
-	
-	void Start ()
-    {
-		
-	}
+
+    public GameObject particle_obj;
     
-	void Update ()
+	void FixedUpdate ()
     {
         GetObject();
-
     }
 
     private void GetObject()
@@ -24,7 +20,22 @@ public class Change_Materia : MonoBehaviour {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
                 Debug.Log(hit.collider.gameObject.name);
-                hit.collider.gameObject.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+                hit.collider.gameObject.GetComponent<Renderer>().material.color = 
+                    Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+
+                float NUM_PARTICLES = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices.Length;
+
+                Destroy(hit.collider.gameObject);
+
+                for (int i = 0; i < NUM_PARTICLES; i++)
+                {
+                    particle_obj = Instantiate(particle_obj, hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i],
+                        hit.collider.gameObject.transform.rotation) as GameObject;
+                    particle_obj.transform.position = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i];
+                }
+
+
+
             }
         }
     }

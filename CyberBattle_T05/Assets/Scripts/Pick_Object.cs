@@ -21,7 +21,7 @@ public class Pick_Object : MonoBehaviour {
         {
             if(hit.collider.gameObject.tag != "Floor")
             {                
-                hit.collider.gameObject.transform.position = cam_player.transform.right * offset + new Vector3(0, 1, 0);
+                hit.collider.gameObject.transform.position = cam_player.transform.forward * offset + new Vector3(0, 1, 0);
                 hit.collider.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 Debug.Log(cam_player.transform.forward);
             }

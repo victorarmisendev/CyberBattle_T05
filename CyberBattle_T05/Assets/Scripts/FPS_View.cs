@@ -33,7 +33,7 @@ public class FPS_View : MonoBehaviour {
 
         Sprint();
         MouseLook();
-        Jump(300.0f);
+        Jump(250.0f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -87,11 +87,13 @@ public class FPS_View : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            HeadBobbing.bobbingSpeed = 0.26f;
+            HeadBobbing.bobbingSpeedX = 0.11f;
+            HeadBobbing.bobbingSpeedY = 0.13f;
             speed = original_speed * 3;
         }
         else {
-            HeadBobbing.bobbingSpeed = 0.18f;
+            HeadBobbing.bobbingSpeedX = 0.06f;
+            HeadBobbing.bobbingSpeedY = 0.08f;
             speed = original_speed;
         }
     }
