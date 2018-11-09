@@ -20,7 +20,6 @@ public class Change_Materia : MonoBehaviour {
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
-
                 float NUM_PARTICLES = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices.Length;
 
                 Destroy(hit.collider.gameObject);
