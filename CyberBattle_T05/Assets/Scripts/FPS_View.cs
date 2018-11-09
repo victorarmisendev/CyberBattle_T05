@@ -16,6 +16,7 @@ public class FPS_View : MonoBehaviour {
     private bool isZoomed = false;
     private Vector3 original_cam_pos;
     private float original_speed;
+    public float jump_force;
 
     void Start ()
     {
@@ -33,7 +34,7 @@ public class FPS_View : MonoBehaviour {
 
         Sprint();
         MouseLook();
-        Jump(250.0f);
+        Jump(jump_force);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -48,7 +49,9 @@ public class FPS_View : MonoBehaviour {
         {
             ZoomOFF();
         }
-        
+
+        Physics.gravity = new Vector3(0.0f, -9.81f * 3, 0.0f);
+
     }
 
     private void MouseLook()
@@ -87,13 +90,13 @@ public class FPS_View : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            HeadBobbing.bobbingSpeedX = 0.11f;
-            HeadBobbing.bobbingSpeedY = 0.13f;
+            HeadBobbing.bobbingSpeedX = 0.25f;
+            HeadBobbing.bobbingSpeedY = 0.20f;
             speed = original_speed * 3;
         }
         else {
-            HeadBobbing.bobbingSpeedX = 0.06f;
-            HeadBobbing.bobbingSpeedY = 0.08f;
+            HeadBobbing.bobbingSpeedX = 0.18f;
+            HeadBobbing.bobbingSpeedY = 0.15f;
             speed = original_speed;
         }
     }
