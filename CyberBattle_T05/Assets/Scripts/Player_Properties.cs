@@ -10,6 +10,8 @@ public class Player_Properties : MonoBehaviour {
 
     private int live;
     private int energy;
+    public int points;
+    public int playerNumber;
 
     public int GetLive()
     {

@@ -12,8 +12,13 @@ public class Tower_Procedural : MonoBehaviour {
     public int propsPorNivel;
     public GameObject[] vigas;
     public GameObject viga_Prefab;
+    public GameObject grua, escaleras_ext;
+
+    public Texture brick_tex;
+    public Texture normal_tex;
 
     private float[] fixedAngles;
+    private float[] grua_pos = new float[2];
     
 
     public Color[] coloresDePlataforma;
@@ -34,8 +39,10 @@ public class Tower_Procedural : MonoBehaviour {
         fixedAngles[3] = 270;
         fixedAngles[4] = 360;
 
-        alturaPorNivel = alturaMaxima / numeroDeNiveles;
+        grua_pos[0] = -Tower_Box.GetComponent<Renderer>().bounds.size.x / 2;
+        grua_pos[1] = Tower_Box.GetComponent<Renderer>().bounds.size.x / 2;
 
+        alturaPorNivel = alturaMaxima / numeroDeNiveles;
 
         for (int i = 0; i < numeroDeNiveles; i++)
         {
@@ -54,6 +61,8 @@ public class Tower_Procedural : MonoBehaviour {
 
                 plataforma.GetComponent<Renderer>().material.color =
                     coloresDePlataforma[randomColor];
+
+                //plataforma.GetComponent<Renderer>().material.SetTexture("Brick", brick_tex);
 
             }
         }
@@ -75,7 +84,48 @@ public class Tower_Procedural : MonoBehaviour {
 
             suelo.transform.localScale = new Vector3(1, 1, 1);
 
+
+            //suelo.GetComponent<Renderer>().material.SetTexture("_MainTex", brick_tex);
+            //suelo.GetComponent<Renderer>().material.SetTexture("_BumpMap", normal_tex);
+            //suelo.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(6.0f, 6.0f));
+            //suelo.GetComponent<Renderer>().material.SetTextureScale("_BumpMap", new Vector2(6.0f, 6.0f));
         }
+
+        for (int u = 1; u < numeroDeNiveles + 1; u++)
+        {
+
+            float randomGrua = grua_pos[Random.Range(0, 2)];
+            Vector3 randomPosition = new Vector3(Tower_Box.transform.position.x + randomGrua, u * alturaPorNivel,
+                Tower_Box.transform.position.z);
+            GameObject grua_obj = Instantiate(grua, randomPosition, grua.transform.rotation);
+
+            if (randomGrua < 0.0f)
+            {
+                //grua_obj.transform.Rotate(Vector3.forward, 180.0f);
+                grua_obj.transform.localRotation = new Quaternion(grua_obj.transform.localRotation.x, grua_obj.transform.localRotation.y,
+                    grua_obj.transform.localRotation.z + 180.0f, 1.0f);
+
+            }
+            int randomColor2 = Random.Range(0, coloresDePlataforma.Length);
+            grua_obj.GetComponent<Renderer>().material.color = coloresDePlataforma[randomColor2];
+
+            Vector3 randomPosition2 = new Vector3(Tower_Box.transform.position.x + Random.Range(grua_pos[0], grua_pos[1]), u * alturaPorNivel,
+                 Tower_Box.transform.position.z + randomGrua);
+
+            GameObject esc_ext = Instantiate(escaleras_ext, randomPosition2, escaleras_ext.transform.rotation);
+
+            esc_ext.transform.Rotate(Vector3.right, 90.0f);
+
+            int randomColor3 = Random.Range(0, coloresDePlataforma.Length);
+            esc_ext.GetComponent<Renderer>().material.color = coloresDePlataforma[randomColor3];
+
+
+
+
+
+        }
+
+        
 
         //Get vigas
         Vigas();

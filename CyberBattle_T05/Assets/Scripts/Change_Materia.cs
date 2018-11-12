@@ -35,7 +35,7 @@ public class Change_Materia : MonoBehaviour {
                         hit.collider.gameObject.transform.position,
                         hit.collider.gameObject.transform.rotation) as GameObject;
 
-                    Debug.Log(hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i]);
+                    //Debug.Log(hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i]);
 
                     Vector3 particel_Pos = hit.collider.gameObject.GetComponent<MeshFilter>().mesh.vertices[i];
 
@@ -47,7 +47,7 @@ public class Change_Materia : MonoBehaviour {
 
                 }
 
-                Debug.Log(NUM_PARTICLES);
+                //Debug.Log(NUM_PARTICLES);
 
 
             }

@@ -90,13 +90,13 @@ public class FPS_View : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            HeadBobbing.bobbingSpeedX = 0.25f;
-            HeadBobbing.bobbingSpeedY = 0.20f;
-            speed = original_speed * 3;
+            HeadBobbing.bobbingSpeedX = 0.15f;
+            HeadBobbing.bobbingSpeedY = 0.10f;
+            speed = original_speed * 1.5f;
         }
         else {
-            HeadBobbing.bobbingSpeedX = 0.18f;
-            HeadBobbing.bobbingSpeedY = 0.15f;
+            HeadBobbing.bobbingSpeedX = 0.08f;
+            HeadBobbing.bobbingSpeedY = 0.05f;
             speed = original_speed;
         }
     }
