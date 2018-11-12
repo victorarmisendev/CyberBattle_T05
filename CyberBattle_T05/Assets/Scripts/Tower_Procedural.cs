@@ -51,9 +51,9 @@ public class Tower_Procedural : MonoBehaviour {
                 Vector3 randomPosition = new Vector3(Tower_Box.transform.position.x +
                     Random.Range(-boundsSize.x, boundsSize.x), i * alturaPorNivel + 2.0f, Tower_Box.transform.position.z +
                     Random.Range(-boundsSize.z, boundsSize.z));
-             
+
                 GameObject plataforma = Instantiate(props[Random.Range(0, props.Length)], randomPosition,
-                    props[0].transform.rotation );
+                    props[0].transform.rotation);
 
                 plataforma.transform.Rotate(Vector3.forward, Random.Range(0, 360));
 
@@ -66,7 +66,6 @@ public class Tower_Procedural : MonoBehaviour {
 
             }
         }
-
 
         for (int u = 1; u < numeroDeNiveles + 1; u++)
         {
@@ -82,8 +81,9 @@ public class Tower_Procedural : MonoBehaviour {
             suelo.GetComponent<Renderer>().material.color =
                 coloresDePlataforma[randomColor2];
 
-            suelo.transform.localScale = new Vector3(1, 1, 1);
+            suelo.gameObject.tag = "Floor";
 
+            suelo.transform.localScale = new Vector3(1, 1, 1);
 
             //suelo.GetComponent<Renderer>().material.SetTexture("_MainTex", brick_tex);
             //suelo.GetComponent<Renderer>().material.SetTexture("_BumpMap", normal_tex);
@@ -101,9 +101,9 @@ public class Tower_Procedural : MonoBehaviour {
 
             if (randomGrua < 0.0f)
             {
-                //grua_obj.transform.Rotate(Vector3.forward, 180.0f);
-                grua_obj.transform.localRotation = new Quaternion(grua_obj.transform.localRotation.x, grua_obj.transform.localRotation.y,
-                    grua_obj.transform.localRotation.z + 180.0f, 1.0f);
+                grua_obj.transform.Rotate(Vector3.forward, 180.0f);
+                //grua_obj.transform.localRotation = new Quaternion(grua_obj.transform.localRotation.x, grua_obj.transform.localRotation.y,
+                //    grua_obj.transform.localRotation.z + 180.0f, 1.0f);
 
             }
             int randomColor2 = Random.Range(0, coloresDePlataforma.Length);

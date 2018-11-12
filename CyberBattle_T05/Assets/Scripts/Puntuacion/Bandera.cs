@@ -14,7 +14,7 @@ public class Bandera : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Player_Properties>().points++;
+            collision.gameObject.GetComponent<Player_Properties>().puntos++;
 
             GameObject [] towers = GameObject.FindGameObjectsWithTag("Tower");
 

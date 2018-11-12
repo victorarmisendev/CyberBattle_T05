@@ -8,29 +8,42 @@ public class Player_Properties : MonoBehaviour {
     //El player tiene energia: 1500 ( int)
     //Cada acción de cambio de materia cuesta 100 de energia
 
-    private int live;
-    private int energy;
-    public int points;
-    public int playerNumber;
+    public int vida;
+    public int energia;
+    public int puntos;
+    public int numeroDeJugador;
+
+    private void Start()
+    {
+        SetLive(100);
+        SetEnergy(100);
+        SetPoints(0);
+
+    }
 
     public int GetLive()
     {
-        return live;
+        return vida;
     }
 
     public void SetLive(int l)
     {
-        live = l;
+        vida = l;
     }
 
     public int GetEnergy()
     {
-        return energy;
+        return energia;
     }
 
     public void SetEnergy(int e)
     {
-        energy = e;
+        energia = e;
+    }
+
+    public void SetPoints(int p)
+    {
+        puntos = p;
     }
 
 }

@@ -36,8 +36,7 @@ public class FPS_View : MonoBehaviour {
         MouseLook();
         Jump(jump_force);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
 
         if (Input.GetKeyDown(KeyCode.Q)) isZoomed = !isZoomed;
         
